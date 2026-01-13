@@ -1,0 +1,4 @@
+Contact: https://github.com/QAntonio19/localexpertiz-website/issues
+Preferred-Languages: es, en
+Canonical: https://saveweb2zip-com-localexpertiz-com.vercel.app/.well-known/security.txt
+
