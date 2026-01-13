@@ -1,0 +1,54 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "**/*.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/social-media-management",
+      "dest": "/social-media-management/index.html"
+    },
+    {
+      "src": "/marketing-de-redes-sociales",
+      "dest": "/marketing-de-redes-sociales/index.html"
+    },
+    {
+      "src": "/desarrollo-web",
+      "dest": "/desarrollo-web/index.html"
+    },
+    {
+      "src": "/blog",
+      "dest": "/blog/index.html"
+    },
+    {
+      "src": "/contact",
+      "dest": "/contact/index.html"
+    },
+    {
+      "src": "/por-que-debo-promocionarme-en-facebook",
+      "dest": "/por-que-debo-promocionarme-en-facebook/index.html"
+    },
+    {
+      "src": "/como-incrementar-tus-ventas-utilizando-smm",
+      "dest": "/como-incrementar-tus-ventas-utilizando-smm/index.html"
+    },
+    {
+      "src": "/social-media-marketing",
+      "dest": "/social-media-marketing/index.html"
+    },
+    {
+      "src": "/por-que-debo-promocionarme-en-instagram",
+      "dest": "/por-que-debo-promocionarme-en-instagram/index.html"
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
+}
+

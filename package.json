@@ -1,0 +1,19 @@
+{
+  "name": "localexpertiz-website",
+  "version": "1.0.0",
+  "description": "Sitio web estático de Local Expertiz - Agencia de Marketing Digital",
+  "scripts": {
+    "dev": "python -m http.server 8001 --bind 127.0.0.1",
+    "start": "python -m http.server 8001 --bind 127.0.0.1",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "marketing-digital",
+    "social-media",
+    "desarrollo-web",
+    "local-expertiz"
+  ],
+  "author": "Local Expertiz",
+  "license": "MIT"
+}
+

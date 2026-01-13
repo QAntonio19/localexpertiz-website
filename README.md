@@ -72,6 +72,37 @@ Luego abre tu navegador en: **http://localhost:8001/**
 - Los feeds y endpoints de WordPress apuntan a `#` para evitar errores
 - El sitio es completamente estático y no requiere base de datos
 
+## 🚀 Deployment en Vercel
+
+### Opción 1: Desde GitHub (Recomendado)
+
+1. Sube el proyecto a GitHub (ver instrucciones arriba)
+2. Ve a [Vercel](https://vercel.com)
+3. Clic en **"New Project"**
+4. Importa tu repositorio de GitHub
+5. Vercel detectará automáticamente la configuración (`vercel.json`)
+6. Clic en **"Deploy"**
+
+¡Listo! Tu sitio estará en: `https://tu-proyecto.vercel.app`
+
+### Opción 2: Desde CLI
+
+```bash
+# Instalar Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel
+```
+
+### Configuración
+
+El archivo `vercel.json` ya está configurado con:
+- ✅ Rutas limpias sin `.html`
+- ✅ Rewrites para todas las páginas y posts
+- ✅ Trailing slash deshabilitado
+- ✅ Optimización automática
+
 ## 👨‍💻 Autor
 
 Local Expertiz - Agencia de Marketing Digital

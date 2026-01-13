@@ -1,0 +1,17 @@
+# Python
+*.pyc
+__pycache__/
+*.py[cod]
+
+# IDEs
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+temp_*.html
+
+# Git
+.git/
+.gitignore
+
