@@ -3,9 +3,18 @@
   "version": "1.0.0",
   "description": "Sitio web estático de Local Expertiz - Agencia de Marketing Digital",
   "scripts": {
-    "dev": "python -m http.server 8001 --bind 127.0.0.1",
+    "dev": "browser-sync start --server --files '**/*.html, css/*.css, js/*.js' --port 3000 --no-open",
     "start": "python -m http.server 8001 --bind 127.0.0.1",
-    "deploy": "vercel --prod"
+    "preview": "python -m http.server 8001 --bind 127.0.0.1",
+    "deploy": "vercel --prod",
+    "format": "prettier --write '**/*.{html,css,js,json}' --ignore-path .gitignore",
+    "lint:js": "eslint 'js/**/*.js'",
+    "lint:css": "stylelint 'css/**/*.css'",
+    "lint": "npm run lint:js && npm run lint:css",
+    "audit:perf": "lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html --only-categories=performance,accessibility,best-practices,seo",
+    "audit:a11y": "axe http://localhost:3000",
+    "optimize:img": "node scripts/optimize-images.js",
+    "optimize:svg": "svgo -r -f ./images"
   },
   "keywords": [
     "marketing-digital",
@@ -14,6 +23,13 @@
     "local-expertiz"
   ],
   "author": "Local Expertiz",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "eslint": "^10.5.0",
+    "prettier": "^3.8.4",
+    "sharp": "^0.35.1",
+    "stylelint": "^17.13.0",
+    "stylelint-config-standard": "^40.0.0"
+  }
 }
-

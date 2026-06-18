@@ -1,0 +1,44 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(npm install *)",
+      "Bash(npx *)",
+      "Bash(python -m http.server *)",
+      "Bash(browser-sync *)",
+      "Bash(prettier *)",
+      "Bash(eslint *)",
+      "Bash(stylelint *)",
+      "Bash(vercel *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(open *)",
+      "Bash(find . *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(lighthouse *)",
+      "Bash(axe *)",
+      "Bash(svgo *)",
+      "Bash(figma-mcp *)"
+    ],
+    "deny": []
+  },
+  "mcpServers": {
+    "playwright": {
+      "command": "playwright-mcp",
+      "args": [],
+      "env": {}
+    },
+    "figma": {
+      "command": "figma-mcp",
+      "args": [],
+      "env": {
+        "FIGMA_API_TOKEN": ""
+      }
+    }
+  }
+}
