@@ -16,6 +16,9 @@
 </head>
 <body>
 
+  <!-- ─── SCROLL PROGRESS ─── -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
   <!-- ─── CUSTOM CURSOR ─── -->
   <div class="cursor" id="cursor" aria-hidden="true"></div>
   <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
@@ -53,7 +56,7 @@
 
   <!-- ─── HERO ─── -->
   <section class="hero" aria-label="Bienvenida">
-    <video class="hero-video" autoplay muted loop playsinline aria-hidden="true" poster="images/SMM-1-1024x683.png">
+    <video class="hero-video" data-parallax="0.18" autoplay muted loop playsinline aria-hidden="true" poster="images/SMM-1-1024x683.png">
       <source src="media/Video-LOEX-VEB-back.mp4" type="video/mp4">
     </video>
     <div class="hero-noise" aria-hidden="true"></div>
@@ -64,7 +67,7 @@
         Agencia Digital · USA + MX
       </span>
 
-      <h1 class="hero-title reveal r-d1">
+      <h1 class="hero-title" data-split>
         HACEMOS<br>
         <span class="stroke">CRECER</span><br>
         TU <span class="accent-y">MARCA.</span>
@@ -130,7 +133,7 @@
       <div class="section-header">
         <div>
           <span class="section-label">Lo que hacemos</span>
-          <h2 class="section-title reveal">NUESTROS<br>SERVICIOS</h2>
+          <h2 class="section-title" data-split>NUESTROS<br>SERVICIOS</h2>
         </div>
         <p class="section-sub reveal r-d1">
           Soluciones digitales integrales diseñadas para hacer crecer tu marca y multiplicar tus resultados.
@@ -211,7 +214,7 @@
 
       <div class="about-text">
         <span class="section-label" style="color:var(--c-yellow)">Quiénes somos</span>
-        <h2 class="about-title reveal">
+        <h2 class="about-title" data-split>
           ¡DÉJASELO<br>A LOS<br><span class="stroke-y">EXPERTOS!</span>
         </h2>
         <p class="about-body reveal r-d1">
@@ -251,16 +254,16 @@
       <div class="section-header">
         <div>
           <span class="section-label">Nuestro trabajo</span>
-          <h2 class="section-title reveal">PROYECTOS<br>DESTACADOS</h2>
+          <h2 class="section-title" data-split>PROYECTOS<br>DESTACADOS</h2>
         </div>
         <a href="#contacto" class="btn-outline reveal r-d1">Ver todos →</a>
       </div>
 
       <div class="cases-grid">
 
-        <article class="case-card case-wide reveal magnetic" aria-label="Caso de estudio: SMM Restaurante">
+        <article class="case-card case-wide reveal magnetic" data-href="social-media-management/index.html" aria-label="Caso de estudio: SMM Restaurante">
           <div class="case-img-wrap">
-            <img src="images/SMM-1-1024x683.png" alt="Campaña de Social Media Management para restaurante — crecimiento 300%" class="case-img" loading="lazy" width="1024" height="683">
+            <img src="images/SMM-1-1024x683.png" alt="Campaña de Social Media Management para restaurante — crecimiento 300%" class="case-img" data-parallax="0.14" loading="lazy" width="1024" height="683">
             <div class="case-overlay" aria-hidden="true">
               <span class="case-arrow">↗</span>
             </div>
@@ -272,9 +275,9 @@
           </div>
         </article>
 
-        <article class="case-card reveal r-d1 magnetic" aria-label="Caso de estudio: Facebook Ads E-commerce">
+        <article class="case-card reveal r-d1 magnetic" data-href="como-incrementar-tus-ventas-utilizando-smm/index.html" aria-label="Caso de estudio: Facebook Ads E-commerce">
           <div class="case-img-wrap">
-            <img src="images/ads-facebook-1024x546.png" alt="Campaña de Facebook Ads — ROAS 4.8x para e-commerce" class="case-img" loading="lazy" width="1024" height="546">
+            <img src="images/ads-facebook-1024x546.png" alt="Campaña de Facebook Ads — ROAS 4.8x para e-commerce" class="case-img" data-parallax="0.14" loading="lazy" width="1024" height="546">
             <div class="case-overlay" aria-hidden="true">
               <span class="case-arrow">↗</span>
             </div>
@@ -286,9 +289,9 @@
           </div>
         </article>
 
-        <article class="case-card reveal r-d2 magnetic" aria-label="Caso de estudio: Crecimiento marca local">
+        <article class="case-card reveal r-d2 magnetic" data-href="marketing-de-redes-sociales/index.html" aria-label="Caso de estudio: Crecimiento marca local">
           <div class="case-img-wrap">
-            <img src="images/Crece-1-1024x683.png" alt="Estrategia de crecimiento digital — ventas triplicadas" class="case-img" loading="lazy" width="1024" height="683">
+            <img src="images/Crece-1-1024x683.png" alt="Estrategia de crecimiento digital — ventas triplicadas" class="case-img" data-parallax="0.14" loading="lazy" width="1024" height="683">
             <div class="case-overlay" aria-hidden="true">
               <span class="case-arrow">↗</span>
             </div>
@@ -300,9 +303,9 @@
           </div>
         </article>
 
-        <article class="case-card case-wide reveal r-d1 magnetic" aria-label="Caso de estudio: Branding startup">
+        <article class="case-card case-wide reveal r-d1 magnetic" data-href="desarrollo-web/index.html" aria-label="Caso de estudio: Branding startup">
           <div class="case-img-wrap">
-            <img src="images/Social-Media-Marketing-650x650.png" alt="Identidad visual y estrategia de contenido para startup" class="case-img" loading="lazy" width="650" height="650">
+            <img src="images/Social-Media-Marketing-650x650.png" alt="Identidad visual y estrategia de contenido para startup" class="case-img" data-parallax="0.14" loading="lazy" width="650" height="650">
             <div class="case-overlay" aria-hidden="true">
               <span class="case-arrow">↗</span>
             </div>
@@ -319,12 +322,12 @@
   </section>
 
   <!-- ─── VIDEO BREAK ─── -->
-  <div class="video-break" aria-hidden="true">
-    <video autoplay muted loop playsinline>
+  <div class="video-break">
+    <video data-parallax="0.22" autoplay muted loop playsinline aria-hidden="true">
       <source src="media/Video-LOEX-VEB-front-services.mp4" type="video/mp4">
     </video>
     <div class="video-break-overlay">
-      <p class="video-break-text">HACEMOS CRECER TU NEGOCIO</p>
+      <p class="video-break-text" data-split>HACEMOS CRECER TU NEGOCIO</p>
     </div>
   </div>
 
@@ -334,7 +337,7 @@
       <div class="section-header">
         <div>
           <span class="section-label" style="color:var(--c-black);opacity:.5">Nuestro equipo</span>
-          <h2 class="section-title reveal">LAS MENTES<br>DETRÁS DE LOEX</h2>
+          <h2 class="section-title" data-split>LAS MENTES<br>DETRÁS DE LOEX</h2>
         </div>
         <p class="section-sub reveal r-d1" style="color:var(--c-black)">
           Un equipo apasionado por el marketing digital y el diseño creativo.
@@ -405,60 +408,94 @@
       <div class="section-header">
         <div>
           <span class="section-label" style="color:var(--c-yellow)">Lo que dicen</span>
-          <h2 class="section-title reveal" style="color:var(--c-white)">SOBRE NUESTROS<br>CLIENTES</h2>
+          <h2 class="section-title" data-split style="color:var(--c-white)">SOBRE NUESTROS<br>CLIENTES</h2>
         </div>
       </div>
 
-      <div class="testimonials-grid">
+      <div class="testimonials-carousel reveal" id="testimonialsCarousel"
+           aria-roledescription="carrusel" aria-label="Opiniones de clientes">
 
-        <article class="testimonial-card reveal">
-          <div class="t-quote" aria-hidden="true">"</div>
-          <blockquote>
-            <p class="t-text">
-              LocalExpertiz transformó completamente nuestra presencia en redes sociales. En solo 3 meses triplicamos seguidores y las ventas aumentaron un 40%.
-            </p>
-            <footer class="t-author">
-              <div class="t-avatar" aria-hidden="true"></div>
-              <div>
-                <cite class="t-name">María González</cite>
-                <span class="t-company">Restaurante La Hacienda</span>
+        <button class="t-nav t-prev" type="button" aria-label="Testimonio anterior">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+
+        <div class="t-viewport">
+          <div class="t-track">
+
+            <article class="t-slide" aria-roledescription="diapositiva" aria-label="1 de 3">
+              <div class="t-quote" aria-hidden="true">"</div>
+              <div class="t-stars" role="img" aria-label="5 de 5 estrellas">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
               </div>
-            </footer>
-          </blockquote>
-        </article>
+              <blockquote>
+                <p class="t-text">
+                  LocalExpertiz transformó por completo nuestra presencia en redes sociales.
+                  En solo 3 meses <strong>triplicamos seguidores</strong> y
+                  <strong>las ventas crecieron un 40%</strong>. Un antes y un después.
+                </p>
+                <footer class="t-author">
+                  <div class="t-avatar" aria-hidden="true">MG</div>
+                  <div>
+                    <cite class="t-name">María González</cite>
+                    <span class="t-company">Restaurante La Hacienda</span>
+                  </div>
+                </footer>
+              </blockquote>
+              <div class="t-progress" aria-hidden="true"></div>
+            </article>
 
-        <article class="testimonial-card reveal r-d1">
-          <div class="t-quote" aria-hidden="true">"</div>
-          <blockquote>
-            <p class="t-text">
-              El equipo diseñó nuestra página web en tiempo récord. Profesionales, creativos y siempre disponibles. 100% recomendados — superaron todas nuestras expectativas.
-            </p>
-            <footer class="t-author">
-              <div class="t-avatar" aria-hidden="true"></div>
-              <div>
-                <cite class="t-name">Carlos Reyes</cite>
-                <span class="t-company">TechFlow MX</span>
+            <article class="t-slide" aria-roledescription="diapositiva" aria-label="2 de 3">
+              <div class="t-quote" aria-hidden="true">"</div>
+              <div class="t-stars" role="img" aria-label="5 de 5 estrellas">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
               </div>
-            </footer>
-          </blockquote>
-        </article>
+              <blockquote>
+                <p class="t-text">
+                  Diseñaron nuestra página web en <strong>tiempo récord</strong>.
+                  Profesionales, creativos y siempre disponibles.
+                  <strong>100% recomendados</strong> — superaron todas nuestras expectativas.
+                </p>
+                <footer class="t-author">
+                  <div class="t-avatar" aria-hidden="true">CR</div>
+                  <div>
+                    <cite class="t-name">Carlos Reyes</cite>
+                    <span class="t-company">TechFlow MX</span>
+                  </div>
+                </footer>
+              </blockquote>
+              <div class="t-progress" aria-hidden="true"></div>
+            </article>
 
-        <article class="testimonial-card reveal r-d2">
-          <div class="t-quote" aria-hidden="true">"</div>
-          <blockquote>
-            <p class="t-text">
-              Las campañas de Facebook Ads superaron todas las expectativas. ROAS de 5x con presupuesto muy accesible. ¡Resultados reales, no promesas!
-            </p>
-            <footer class="t-author">
-              <div class="t-avatar" aria-hidden="true"></div>
-              <div>
-                <cite class="t-name">Ana Martínez</cite>
-                <span class="t-company">Boutique Eleganza USA</span>
+            <article class="t-slide" aria-roledescription="diapositiva" aria-label="3 de 3">
+              <div class="t-quote" aria-hidden="true">"</div>
+              <div class="t-stars" role="img" aria-label="5 de 5 estrellas">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
               </div>
-            </footer>
-          </blockquote>
-        </article>
+              <blockquote>
+                <p class="t-text">
+                  Las campañas de Facebook Ads superaron todo lo esperado:
+                  <strong>ROAS de 5x</strong> con un presupuesto muy accesible.
+                  ¡Resultados reales, no promesas!
+                </p>
+                <footer class="t-author">
+                  <div class="t-avatar" aria-hidden="true">AM</div>
+                  <div>
+                    <cite class="t-name">Ana Martínez</cite>
+                    <span class="t-company">Boutique Eleganza USA</span>
+                  </div>
+                </footer>
+              </blockquote>
+              <div class="t-progress" aria-hidden="true"></div>
+            </article>
 
+          </div>
+        </div>
+
+        <button class="t-nav t-next" type="button" aria-label="Siguiente testimonio">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+
+        <div class="t-dots" role="tablist" aria-label="Seleccionar testimonio"></div>
       </div>
     </div>
   </section>
