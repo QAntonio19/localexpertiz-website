@@ -527,6 +527,8 @@ body.cursor-active .cursor-ring { width: 52px; height: 52px; opacity: 0.2; }
 .card-hover-bg { display: none; }
 
 .service-num {
+  position: relative;
+  z-index: 1;
   font-family: var(--font-display);
   font-size: 0.68rem;
   font-weight: 600;
@@ -534,36 +536,49 @@ body.cursor-active .cursor-ring { width: 52px; height: 52px; opacity: 0.2; }
   color: var(--c-blue);
   margin-bottom: 18px;
 }
+/* Icon rendered as a large, faint blue watermark in the top-right corner
+   (same treatment as the feature cards). */
 .service-icon {
-  width: 48px; height: 48px;
-  background: var(--c-blue-bg);
-  border-radius: var(--radius-sm);
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 128px;
+  height: 128px;
+  margin: 0;
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 22px;
-  transition: background 0.2s;
+  pointer-events: none;
+  z-index: 0;
 }
-.service-card:hover .service-icon { background: var(--c-blue); }
 .service-icon svg {
-  width: 22px; height: 22px;
+  width: 108px; height: 108px;
   color: var(--c-blue);
-  transition: color 0.2s;
+  opacity: 0.1;
+  stroke-width: 1.5;
+  transition: opacity 0.25s;
 }
-.service-card:hover .service-icon svg { color: var(--c-white); }
+.service-card:hover .service-icon svg { opacity: 0.16; }
 .service-name {
+  position: relative;
+  z-index: 1;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.35rem;
   letter-spacing: -0.01em;
   color: var(--c-text);
   margin-bottom: 12px;
+  padding-right: 56px;
 }
 .service-desc {
+  position: relative;
+  z-index: 1;
   font-size: 0.9rem;
   line-height: 1.75;
   color: var(--c-text-2);
   margin-bottom: 24px;
 }
 .service-link {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -595,6 +610,10 @@ body.cursor-active .cursor-ring { width: 52px; height: 52px; opacity: 0.2; }
   letter-spacing: -0.02em;
   color: var(--c-white);
   margin-bottom: 24px;
+}
+/* Outline word on blue background: blue-on-blue is invisible, use white stroke */
+.about-title .stroke-y {
+  -webkit-text-stroke-color: var(--c-white);
 }
 .about-body {
   color: rgba(255,255,255,0.8);
@@ -1448,9 +1467,11 @@ body.cursor-active .cursor-ring { width: 52px; height: 52px; opacity: 0.2; }
   margin-top: 48px;
 }
 .feature-card {
+  position: relative;
+  overflow: hidden;
   border: var(--border);
-  border-radius: var(--radius-md);
-  padding: 28px 24px;
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
   background: var(--c-white);
   box-shadow: var(--shadow-xs);
   transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
@@ -1460,20 +1481,39 @@ body.cursor-active .cursor-ring { width: 52px; height: 52px; opacity: 0.2; }
   box-shadow: var(--shadow-md);
   transform: translateY(-3px);
 }
+/* Icon rendered as a large, faint blue watermark in the top-right corner
+   (recreates the reference card design, keeping the brand blue). */
 .feature-icon {
-  width: 44px; height: 44px;
-  background: var(--c-blue-bg);
-  border-radius: var(--radius-sm);
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 112px;
+  height: 112px;
+  margin: 0;
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 16px;
+  pointer-events: none;
+  z-index: 0;
 }
-.feature-icon svg { width: 20px; height: 20px; color: var(--c-blue); }
+.feature-icon svg {
+  width: 96px; height: 96px;
+  color: var(--c-blue);
+  opacity: 0.12;
+  stroke-width: 1.5;
+}
+.feature-card:hover .feature-icon svg { opacity: 0.18; }
 .feature-title {
+  position: relative;
+  z-index: 1;
   font-family: var(--font-display);
-  font-weight: 700; font-size: 1rem;
+  font-weight: 700; font-size: 1.05rem;
   color: var(--c-text); margin-bottom: 8px;
+  padding-right: 48px;
 }
-.feature-desc { font-size: 0.86rem; line-height: 1.7; color: var(--c-text-2); }
+.feature-desc {
+  position: relative;
+  z-index: 1;
+  font-size: 0.86rem; line-height: 1.7; color: var(--c-text-2);
+}
 
 .steps-list { display: flex; flex-direction: column; gap: 0; margin-top: 40px; }
 .step-item {
