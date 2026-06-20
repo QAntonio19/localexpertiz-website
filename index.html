@@ -70,7 +70,7 @@
       <h1 class="hero-title" data-split>
         HACEMOS<br>
         <span class="stroke">CRECER</span><br>
-        TU <span class="accent-y">MARCA.</span>
+        TU <span class="ls" id="heroSwap" data-words="MARCA.,EMPRESA." data-stagger="45" data-duration="520" data-hold="1600"></span>
       </h1>
 
       <div class="hero-bottom reveal r-d2">
@@ -412,90 +412,40 @@
         </div>
       </div>
 
-      <div class="testimonials-carousel reveal" id="testimonialsCarousel"
-           aria-roledescription="carrusel" aria-label="Opiniones de clientes">
+      <div class="stagger reveal" id="staggerTestimonials" aria-label="Opiniones de clientes">
 
-        <button class="t-nav t-prev" type="button" aria-label="Testimonio anterior">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
+        <article class="st-card" tabindex="0" role="button" aria-label="Testimonio de María González">
+          <span class="st-line" aria-hidden="true"></span>
+          <div class="st-avatar" aria-hidden="true">MG</div>
+          <div class="st-stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
+          <h3 class="st-quote">"Triplicamos seguidores y las ventas crecieron un 40% en solo 3 meses. Un antes y un después."</h3>
+          <p class="st-by">— María González, Restaurante La Hacienda</p>
+        </article>
 
-        <div class="t-viewport">
-          <div class="t-track">
+        <article class="st-card" tabindex="0" role="button" aria-label="Testimonio de Carlos Reyes">
+          <span class="st-line" aria-hidden="true"></span>
+          <div class="st-avatar" aria-hidden="true">CR</div>
+          <div class="st-stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
+          <h3 class="st-quote">"Diseñaron nuestra web en tiempo récord. Creativos, profesionales y 100% recomendados."</h3>
+          <p class="st-by">— Carlos Reyes, TechFlow MX</p>
+        </article>
 
-            <article class="t-slide" aria-roledescription="diapositiva" aria-label="1 de 3">
-              <div class="t-quote" aria-hidden="true">"</div>
-              <div class="t-stars" role="img" aria-label="5 de 5 estrellas">
-                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-              </div>
-              <blockquote>
-                <p class="t-text">
-                  LocalExpertiz transformó por completo nuestra presencia en redes sociales.
-                  En solo 3 meses <strong>triplicamos seguidores</strong> y
-                  <strong>las ventas crecieron un 40%</strong>. Un antes y un después.
-                </p>
-                <footer class="t-author">
-                  <div class="t-avatar" aria-hidden="true">MG</div>
-                  <div>
-                    <cite class="t-name">María González</cite>
-                    <span class="t-company">Restaurante La Hacienda</span>
-                  </div>
-                </footer>
-              </blockquote>
-              <div class="t-progress" aria-hidden="true"></div>
-            </article>
+        <article class="st-card" tabindex="0" role="button" aria-label="Testimonio de Ana Martínez">
+          <span class="st-line" aria-hidden="true"></span>
+          <div class="st-avatar" aria-hidden="true">AM</div>
+          <div class="st-stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
+          <h3 class="st-quote">"Sus campañas de Facebook Ads lograron un ROAS de 5x con un presupuesto muy accesible."</h3>
+          <p class="st-by">— Ana Martínez, Boutique Eleganza USA</p>
+        </article>
 
-            <article class="t-slide" aria-roledescription="diapositiva" aria-label="2 de 3">
-              <div class="t-quote" aria-hidden="true">"</div>
-              <div class="t-stars" role="img" aria-label="5 de 5 estrellas">
-                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-              </div>
-              <blockquote>
-                <p class="t-text">
-                  Diseñaron nuestra página web en <strong>tiempo récord</strong>.
-                  Profesionales, creativos y siempre disponibles.
-                  <strong>100% recomendados</strong> — superaron todas nuestras expectativas.
-                </p>
-                <footer class="t-author">
-                  <div class="t-avatar" aria-hidden="true">CR</div>
-                  <div>
-                    <cite class="t-name">Carlos Reyes</cite>
-                    <span class="t-company">TechFlow MX</span>
-                  </div>
-                </footer>
-              </blockquote>
-              <div class="t-progress" aria-hidden="true"></div>
-            </article>
-
-            <article class="t-slide" aria-roledescription="diapositiva" aria-label="3 de 3">
-              <div class="t-quote" aria-hidden="true">"</div>
-              <div class="t-stars" role="img" aria-label="5 de 5 estrellas">
-                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-              </div>
-              <blockquote>
-                <p class="t-text">
-                  Las campañas de Facebook Ads superaron todo lo esperado:
-                  <strong>ROAS de 5x</strong> con un presupuesto muy accesible.
-                  ¡Resultados reales, no promesas!
-                </p>
-                <footer class="t-author">
-                  <div class="t-avatar" aria-hidden="true">AM</div>
-                  <div>
-                    <cite class="t-name">Ana Martínez</cite>
-                    <span class="t-company">Boutique Eleganza USA</span>
-                  </div>
-                </footer>
-              </blockquote>
-              <div class="t-progress" aria-hidden="true"></div>
-            </article>
-
-          </div>
+        <div class="st-nav">
+          <button class="st-btn" type="button" data-dir="-1" aria-label="Testimonio anterior">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="st-btn" type="button" data-dir="1" aria-label="Siguiente testimonio">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
         </div>
-
-        <button class="t-nav t-next" type="button" aria-label="Siguiente testimonio">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-        </button>
-
-        <div class="t-dots" role="tablist" aria-label="Seleccionar testimonio"></div>
       </div>
     </div>
   </section>

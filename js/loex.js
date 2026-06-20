@@ -77,6 +77,98 @@
   }
   document.querySelectorAll('[data-split]').forEach(splitHeading);
 
+  /* ── LETTER SWAP — palabra del hero: la palabra rueda letra por letra (MARCA ↔ EMPRESA), automático ── */
+  const heroSwap = document.getElementById('heroSwap');
+  if (heroSwap) {
+    const words = (heroSwap.dataset.words || 'MARCA.,EMPRESA.').split(',').map(w => w.trim());
+    const STAGGER = parseFloat(heroSwap.dataset.stagger) || 45;   // ms por letra
+    const DUR = parseFloat(heroSwap.dataset.duration) || 520;     // ms del rodado
+    const HOLD = parseFloat(heroSwap.dataset.hold) || 1600;       // ms entre cambios
+    const EASE = 'cubic-bezier(0.2, 0.7, 0.2, 1.15)';             // resorte con leve rebote
+    let idx = 0;
+
+    // Construye una palabra completa como capa (cada letra en su propio span)
+    function buildWord(word) {
+      const layer = document.createElement('span');
+      layer.className = 'ls-word';
+      word.split('').forEach(ch => {
+        const l = document.createElement('span');
+        l.className = 'ls-l';
+        l.textContent = ch;
+        layer.appendChild(l);
+      });
+      return layer;
+    }
+
+    // Fija el ancho a la palabra más larga (evita saltos de layout)
+    function setWidth() {
+      const ghost = document.createElement('span');
+      const cs = getComputedStyle(heroSwap);
+      Object.assign(ghost.style, {
+        position: 'absolute', visibility: 'hidden', whiteSpace: 'pre',
+        fontFamily: cs.fontFamily, fontWeight: cs.fontWeight,
+        fontSize: cs.fontSize, letterSpacing: cs.letterSpacing
+      });
+      document.body.appendChild(ghost);
+      let max = 0;
+      words.forEach(w => { ghost.textContent = w; max = Math.max(max, ghost.getBoundingClientRect().width); });
+      ghost.remove();
+      heroSwap.style.width = Math.ceil(max) + 'px';
+    }
+
+    heroSwap.innerHTML = '';
+    let current = buildWord(words[0]);
+    heroSwap.appendChild(current);
+    const sr = document.createElement('span'); sr.className = 'ls-sr';
+    sr.textContent = words[0]; heroSwap.appendChild(sr);
+
+    setWidth();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(setWidth);
+    window.addEventListener('resize', setWidth, { passive: true });
+
+    let busy = false;
+    function swapOnce() {
+      if (busy) return;
+      busy = true;
+      const to = (idx + 1) % words.length;
+
+      const incoming = buildWord(words[to]);
+      const inLetters = Array.from(incoming.children);
+      inLetters.forEach(l => { l.style.transform = 'translateY(105%)'; });  // empiezan abajo, ocultas
+      heroSwap.appendChild(incoming);
+      void heroSwap.offsetWidth;                                            // reflow
+
+      const outLetters = Array.from(current.children);
+      const n = Math.max(outLetters.length, inLetters.length);
+
+      outLetters.forEach((l, i) => {
+        l.style.transition = `transform ${DUR}ms ${EASE}`;
+        l.style.transitionDelay = (i * STAGGER) + 'ms';
+        l.style.transform = 'translateY(-105%)';                            // salen hacia arriba
+      });
+      inLetters.forEach((l, i) => {
+        l.style.transition = `transform ${DUR}ms ${EASE}`;
+        l.style.transitionDelay = (i * STAGGER) + 'ms';
+        l.style.transform = 'translateY(0)';                               // entran a su lugar
+      });
+
+      const total = DUR + (n - 1) * STAGGER;
+      const outgoing = current;
+      current = incoming;
+      idx = to;
+      sr.textContent = words[to];
+      setTimeout(() => { outgoing.remove(); busy = false; }, total + 90);
+    }
+
+    if (!prefersReduced && words.length > 1) {
+      const cycleMs = DUR + Math.max(...words.map(w => w.length)) * STAGGER + HOLD;
+      setTimeout(() => {
+        swapOnce();
+        setInterval(swapOnce, cycleMs);
+      }, 1200);   // arranca tras el revelado del hero
+    }
+  }
+
   /* ── SCROLL REVEAL v2 ── */
   const animEls = document.querySelectorAll('.reveal, [data-reveal], [data-split]');
   if (animEls.length) {
@@ -281,81 +373,89 @@
     });
   }
 
-  /* ── TESTIMONIALS CAROUSEL — uno por transición ── */
-  const carousel = document.getElementById('testimonialsCarousel');
-  if (carousel) {
-    const track  = carousel.querySelector('.t-track');
-    const slides = Array.from(carousel.querySelectorAll('.t-slide'));
-    const prev   = carousel.querySelector('.t-prev');
-    const next   = carousel.querySelector('.t-next');
-    const dotsEl = carousel.querySelector('.t-dots');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let index = 0;
-    let timer = null;
-    const DELAY = 6000;
-    carousel.style.setProperty('--t-delay', DELAY + 'ms');
+  /* ── STAGGER TESTIMONIOS — tarjetas apiladas ── */
+  const stagger = document.getElementById('staggerTestimonials');
+  if (stagger) {
+    const cards = Array.from(stagger.querySelectorAll('.st-card'));
+    const staggerReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let size = 365;
+    let order = cards.map((_, i) => i);   // índices de tarjeta en orden de presentación
+    let autoTimer = null;
+    const AUTO_DELAY = 4000;
 
-    // Build dots
-    const dots = slides.map((_, i) => {
-      const dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = 't-dot';
-      dot.setAttribute('role', 'tab');
-      dot.setAttribute('aria-label', `Ver testimonio ${i + 1}`);
-      dot.addEventListener('click', () => { goTo(i); restart(); });
-      dotsEl.appendChild(dot);
-      return dot;
-    });
-
-    const bars = slides.map(s => s.querySelector('.t-progress'));
-
-    function runProgress() {
-      bars.forEach(b => b && b.classList.remove('run'));
-      const bar = bars[index];
-      if (bar && !reduceMotion) {
-        void bar.offsetWidth;            // reinicia la animación
-        bar.classList.add('run');
-        bar.style.animationPlayState = 'running';
-      }
-    }
-
-    function goTo(i) {
-      index = (i + slides.length) % slides.length;
-      track.style.transform = `translateX(-${index * 100}%)`;
-      slides.forEach((s, n) => s.classList.toggle('is-active', n === index));
-      dots.forEach((d, n) => {
-        const active = n === index;
-        d.classList.toggle('is-active', active);
-        d.setAttribute('aria-selected', String(active));
+    function layout() {
+      const L = order.length;
+      const half = Math.floor(L / 2);
+      order.forEach((cardIdx, displayIdx) => {
+        const position = displayIdx - half;       // centro simétrico = 0
+        const el = cards[cardIdx];
+        const isCenter = position === 0;
+        const ax = Math.abs(position);
+        const tx = (size / 1.5) * position;
+        const ty = isCenter ? -65 : (ax % 2 ? 15 : -15);
+        const rot = isCenter ? 0 : (position % 2 ? 2.5 : -2.5);
+        el.classList.toggle('is-center', isCenter);
+        el.style.zIndex = isCenter ? 10 : 10 - ax;
+        el.style.transform =
+          `translate(-50%, -50%) translateX(${tx}px) translateY(${ty}px) rotate(${rot}deg)`;
+        el.dataset.pos = String(position);
+        el.setAttribute('aria-current', isCenter ? 'true' : 'false');
       });
-      runProgress();
     }
 
-    function restart() {
-      if (timer) clearInterval(timer);
-      runProgress();
-      if (!reduceMotion) timer = setInterval(() => goTo(index + 1), DELAY);
+    function move(steps) {
+      const L = order.length;
+      const n = ((steps % L) + L) % L;
+      if (!n) return;
+      order = order.slice(n).concat(order.slice(0, n));
+      layout();
     }
 
-    next.addEventListener('click', () => { goTo(index + 1); restart(); });
-    prev.addEventListener('click', () => { goTo(index - 1); restart(); });
+    function startAuto() {
+      if (staggerReduce || autoTimer) return;
+      autoTimer = setInterval(() => move(1), AUTO_DELAY);
+    }
+    function stopAuto() {
+      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+    }
+    // Reinicia el contador tras una interacción manual
+    function nudge(steps) { move(steps); stopAuto(); startAuto(); }
 
-    // Pause on hover
-    carousel.addEventListener('mouseenter', () => {
-      if (timer) clearInterval(timer);
-      const bar = bars[index];
-      if (bar) bar.style.animationPlayState = 'paused';
+    function setSize() {
+      size = window.matchMedia('(min-width: 640px)').matches ? 365 : 290;
+      stagger.style.setProperty('--st-size', size + 'px');
+      layout();
+    }
+
+    // Click / teclado en una tarjeta → llevarla al centro
+    cards.forEach(el => {
+      el.addEventListener('click', () => nudge(Number(el.dataset.pos) || 0));
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          nudge(Number(el.dataset.pos) || 0);
+        }
+      });
     });
-    carousel.addEventListener('mouseleave', restart);
 
-    // Keyboard
-    carousel.addEventListener('keydown', e => {
-      if (e.key === 'ArrowRight') { goTo(index + 1); restart(); }
-      if (e.key === 'ArrowLeft')  { goTo(index - 1); restart(); }
+    // Flechas ‹ ›
+    stagger.querySelectorAll('.st-btn').forEach(btn => {
+      btn.addEventListener('click', () => nudge(Number(btn.dataset.dir)));
     });
 
-    goTo(0);
-    restart();
+    // Pausa al pasar el mouse o enfocar; reanuda al salir
+    stagger.addEventListener('mouseenter', stopAuto);
+    stagger.addEventListener('mouseleave', startAuto);
+    stagger.addEventListener('focusin', stopAuto);
+    stagger.addEventListener('focusout', startAuto);
+    // Pausa cuando la pestaña no está visible
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopAuto(); else startAuto();
+    });
+
+    setSize();
+    window.addEventListener('resize', setSize, { passive: true });
+    startAuto();
   }
 
   /* ── MARQUEE — pause on reduced motion ── */

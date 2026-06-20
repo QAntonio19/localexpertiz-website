@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   LocalExpertiz brand theme (shadcn tokens)
+   Blue #1A8EE6 · Green #22C468 · Navy #0C1E35
+   Fonts: Poppins (display) + Open Sans (body)
+   ============================================================ */
+@layer base {
+  :root {
+    --background: 210 60% 98%;          /* #F6FAFE light blue-gray */
+    --foreground: 213 63% 13%;          /* navy #0C1E35 */
+    --card: 0 0% 100%;
+    --card-foreground: 213 63% 13%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 213 63% 13%;
+    --primary: 206 80% 50%;             /* brand blue #1A8EE6 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 206 73% 96%;           /* #EBF5FD */
+    --secondary-foreground: 213 63% 13%;
+    --muted: 208 71% 96%;               /* #EFF6FD */
+    --muted-foreground: 212 26% 40%;    /* #4B6480 */
+    --accent: 146 56% 94%;              /* green-bg #E6F9EF */
+    --accent-foreground: 146 73% 36%;   /* green-dk #18A454 */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 207 57% 86%;              /* #C8DEF0 */
+    --input: 207 57% 86%;
+    --ring: 206 80% 50%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 213 63% 13%;          /* navy */
+    --foreground: 0 0% 100%;
+    --card: 213 60% 17%;                /* navy-2 #112844 */
+    --card-foreground: 0 0% 100%;
+    --popover: 213 60% 17%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 206 80% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 213 50% 22%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 213 50% 22%;
+    --muted-foreground: 210 25% 70%;
+    --accent: 146 60% 24%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 213 40% 26%;
+    --input: 213 40% 26%;
+    --ring: 206 80% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
