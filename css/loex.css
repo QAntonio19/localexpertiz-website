@@ -1305,6 +1305,218 @@ body.cursor-active .cursor-ring { width: 52px; height: 52px; opacity: 0.2; }
   pointer-events: none;
 }
 
+/* ── PRICING ── */
+.pricing { background: var(--c-bg-alt); }
+/* Toggle de moneda MXN / USD */
+.currency-toggle {
+  display: flex;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto 10px;
+  gap: 4px;
+  padding: 5px;
+  border: 1.5px solid var(--c-border);
+  border-radius: var(--radius-xl);
+  background: var(--c-white);
+  box-shadow: var(--shadow-xs);
+}
+.cur-btn {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  padding: 9px 26px;
+  border-radius: var(--radius-xl);
+  color: var(--c-text-2);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.cur-btn:hover { color: var(--c-blue); }
+.cur-btn.is-active,
+.cur-btn.is-active:hover { background: var(--c-blue); color: var(--c-white); }
+.currency-hint {
+  text-align: center;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: var(--c-text-2);
+  margin: 0 0 58px;
+}
+/* Mostrar moneda según selección (MXN por defecto) */
+.amt { display: flex; flex-direction: column; gap: 3px; }
+.amt-usd { display: none; }
+.pricing.is-usd .amt-mxn { display: none; }
+.pricing.is-usd .amt-usd { display: flex; }
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.price-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--c-white);
+  border: 1.5px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: 38px 32px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.price-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--c-blue-mid);
+}
+.price-card.featured {
+  background: var(--c-navy);
+  border-color: var(--c-navy);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-12px);
+}
+.price-card.featured:hover { transform: translateY(-18px); }
+.price-badge {
+  position: absolute;
+  top: -15px; left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, var(--c-blue), var(--c-green));
+  color: var(--c-white);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 8px 20px;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 8px 22px rgba(26,142,230,0.45);
+}
+.price-kicker {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-blue);
+}
+.featured .price-kicker { color: #74C4FF; }
+.price-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.7rem;
+  letter-spacing: -0.02em;
+  color: var(--c-text);
+  margin: 8px 0 6px;
+}
+.featured .price-name { color: var(--c-white); }
+.price-for {
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--c-text-2);
+  min-height: 2.9em;
+}
+.featured .price-for { color: rgba(255,255,255,0.7); }
+.price-amount {
+  margin: 22px 0 24px;
+  padding: 20px 0;
+  border-top: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--c-border);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.featured .price-amount { border-color: rgba(255,255,255,0.14); }
+.price-from {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-text-2);
+}
+.featured .price-from { color: rgba(255,255,255,0.55); }
+.price-mx {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.1rem;
+  line-height: 1.05;
+  color: var(--c-text);
+  white-space: nowrap;
+}
+/* Rangos largos (p. ej. $24,000–$38,000) — más chico para que quepan en una línea */
+.price-mx.range { font-size: 1.55rem; }
+.featured .price-mx { color: var(--c-white); }
+.price-mx small { font-size: 0.85rem; font-weight: 600; color: var(--c-text-2); }
+.featured .price-mx small { color: rgba(255,255,255,0.6); }
+.price-plus {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.02rem;
+  color: var(--c-blue);
+  margin-top: 2px;
+}
+.featured .price-plus { color: var(--c-green); }
+.price-usd {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--c-text-2);
+  margin-top: 4px;
+}
+.featured .price-usd { color: rgba(255,255,255,0.55); }
+.price-features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 30px;
+  flex: 1;
+}
+.price-features li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--c-text-2);
+}
+.featured .price-features li { color: rgba(255,255,255,0.82); }
+.price-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0; top: 0;
+  color: var(--c-green);
+  font-weight: 700;
+}
+.price-cta {
+  display: block;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--c-blue);
+  color: var(--c-blue);
+  background: transparent;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s, border-color 0.2s;
+}
+.price-cta:hover {
+  background: var(--c-blue);
+  color: var(--c-white);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.price-cta.featured-cta {
+  background: var(--c-blue);
+  color: var(--c-white);
+  border-color: var(--c-blue);
+}
+.price-cta.featured-cta:hover { background: var(--c-blue-dk); border-color: var(--c-blue-dk); }
+.pricing-note {
+  text-align: center;
+  margin-top: 34px;
+  font-size: 0.9rem;
+  color: var(--c-text-2);
+}
+
 /* ── RESPONSIVE ── */
 /* Escala tipográfica fluida: el texto baja gradualmente en pantallas chicas */
 @media (max-width: 1280px) { html { font-size: 17.5px; } }
@@ -1345,6 +1557,9 @@ body.cursor-active .cursor-ring { width: 52px; height: 52px; opacity: 0.2; }
   .services-grid { grid-template-columns: 1fr; }
   .cases-grid { grid-template-columns: 1fr; }
   .team-grid { grid-template-columns: 1fr 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; gap: 32px; }
+  .price-card.featured { transform: none; }
+  .price-card.featured:hover { transform: translateY(-6px); }
   .section-header { flex-direction: column; align-items: flex-start; gap: 18px; }
   .section-sub, .section-desc { max-width: none; font-size: 1.18rem; }
   .service-desc { font-size: 1.12rem; }

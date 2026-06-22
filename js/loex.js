@@ -246,6 +246,22 @@
     });
   }
 
+  /* ── PRICING — toggle de moneda MXN / USD ── */
+  const pricing = document.querySelector('.pricing');
+  if (pricing) {
+    const curBtns = pricing.querySelectorAll('.cur-btn');
+    curBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        pricing.classList.toggle('is-usd', btn.dataset.cur === 'usd');
+        curBtns.forEach(b => {
+          const active = b === btn;
+          b.classList.toggle('is-active', active);
+          b.setAttribute('aria-pressed', String(active));
+        });
+      });
+    });
+  }
+
   /* ── PARALLAX + BARRA DE PROGRESO ── */
   const progressBar = document.getElementById('scrollProgress');
   const parallaxEls = Array.from(document.querySelectorAll('[data-parallax]'));
